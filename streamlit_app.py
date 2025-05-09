@@ -24,8 +24,8 @@ international = st.selectbox("Mahasiswa Internasional?", ['Tidak', 'Ya'])
 
 # Fitur numerik
 age = st.number_input("Umur saat Pendaftaran", min_value=15, max_value=100, value=18)
-curricular_units_1st_sem_grade = st.slider("Rata-rata Nilai Semester 1", 0.0, 10.0, 20.0)
-curricular_units_2nd_sem_grade = st.slider("Rata-rata Nilai Semester 2", 0.0, 10.0, 20.0)
+curricular_units_1st_sem_grade = st.slider("Rata-rata Nilai Semester 1", 0.0, 20.0, 10.0)
+curricular_units_2nd_sem_grade = st.slider("Rata-rata Nilai Semester 2", 0.0, 20.0, 10.0)
 
 # Konversi ke format input model
 input_data = {
