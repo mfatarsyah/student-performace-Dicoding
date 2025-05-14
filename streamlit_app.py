@@ -6,7 +6,7 @@ import joblib
 
 # Load model dan encoder
 model = joblib.load('student_status_model.joblib')
-label_encoder = joblib.load('label_encoder.joblib')
+label_encoder = joblib.load('Random_Forest_Model.joblib')
 
 # Judul aplikasi
 st.title("🎓 Prediksi Dropout Mahasiswa - Jaya Jaya Institut")
