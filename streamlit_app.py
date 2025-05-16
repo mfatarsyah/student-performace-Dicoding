@@ -14,18 +14,11 @@ from prediction import prediction
 
 st.set_page_config(page_title="🎓 Students Performance", layout="wide")
 
-image_files = ['logo-x.png']
 
 desired_width = 160
 desired_height = 160
 
 col1, col2 = st.columns([2, 10])
-
-with col1:
-    for idx, image_file in enumerate(image_files):
-        img = Image.open(image_file)
-        resized_img = img.resize((desired_width, desired_height))
-        st.image(resized_img)
 with col2:
     st.header('X INSTITUTE')
     st.subheader("Students Performance Prediction")
