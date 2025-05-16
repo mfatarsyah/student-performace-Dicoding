@@ -17,41 +17,58 @@ st.title("🎓 Prediksi Dropout Mahasiswa - Jaya Jaya Institut")
 
 st.markdown("Masukkan data berikut untuk memprediksi apakah mahasiswa akan Dropout, Enrolled, atau Graduate.")
 
-# Input dari user
-gender = st.selectbox("Jenis Kelamin", ['Laki-laki', 'Perempuan'])
-displaced = st.selectbox("Apakah Mahasiswa Pengungsi?", ['Tidak', 'Ya'])
-special_needs = st.selectbox("Memiliki Kebutuhan Khusus?", ['Tidak', 'Ya'])
-debtor = st.selectbox("Memiliki Tunggakan?", ['Tidak', 'Ya'])
-tuition_up_to_date = st.selectbox("Pembayaran Biaya Kuliah Tepat Waktu?", ['Tidak', 'Ya'])
-scholarship_holder = st.selectbox("Penerima Beasiswa?", ['Tidak', 'Ya'])
-international = st.selectbox("Mahasiswa Internasional?", ['Tidak', 'Ya'])
 
-# Fitur numerik
-age = st.number_input("Umur saat Pendaftaran", min_value=15, max_value=100, value=18)
-curricular_units_1st_sem_grade = st.slider("Rata-rata Nilai Semester 1", 0.0, 20.0, 10.0)
-curricular_units_2nd_sem_grade = st.slider("Rata-rata Nilai Semester 2", 0.0, 20.0, 10.0)
+# Helper functions
+def encode_selection(encoder, selection, labels):
+    encoder.fit(labels)
+    return encoder.transform([selection])[0]
 
-# Konversi ke format input model
-input_data = {
-    'Gender': 0 if gender == 'Laki-laki' else 1,
-    'Displaced': 1 if displaced == 'Ya' else 0,
-    'Educational_special_needs': 1 if special_needs == 'Ya' else 0,
-    'Debtor': 1 if debtor == 'Ya' else 0,
-    'Tuition_fees_up_to_date': 1 if tuition_up_to_date == 'Ya' else 0,
-    'Scholarship_holder': 1 if scholarship_holder == 'Ya' else 0,
-    'International': 1 if international == 'Ya' else 0,
-    'Age_at_enrollment': age,
-    'Curricular_units_1st_sem_grade': curricular_units_1st_sem_grade,
-    'Curricular_units_2nd_sem_grade': curricular_units_2nd_sem_grade
-}
+def create_slider(label, min_value, max_value, default):
+    data[label] = [st.slider(label.replace('_', ' '), min_value, max_value, default)]
 
-input_df = pd.DataFrame([input_data])
+# Form Input
+st.markdown("### Input Student Data Below")
+data = {}
 
-# Load model
-model = joblib.load('student_status_model.joblib')
+# Binary Selections
+st.markdown("#### Student Status")
+data['Tuition_fees_up_to_date'] = [encoder_Tuition_fees_up_to_date.fit_transform([st.selectbox("Tuition fees up to date", [0, 1])])[0]]
+data['Scholarship_holder'] = [encoder_Scholarship_holder.fit_transform([st.selectbox("Scholarship holder", [0, 1])])[0]]
+data['Debtor'] = [encoder_Debtor.fit_transform([st.selectbox("Debtor", [0, 1])])[0]]
+data['Displaced'] = [encoder_Displaced.fit_transform([st.selectbox("Displaced", [0, 1])])[0]]
+data['Daytime_evening_attendance'] = [encoder_Daytime_evening_attendance.fit_transform([st.selectbox("Attendance (Daytime/Evening)", [0, 1])])[0]]
 
-# Prediksi
-if st.button("Prediksi"):
-    pred = model.predict(input_df)[0]
-    label_map = {0: 'Graduate', 1: 'Enrolled', 2: 'Dropout'}
-    st.success(f"📊 Hasil Prediksi: **{label_map[pred]}**")
+# Gender
+st.markdown("#### Demographics")
+encoder_Gender = LabelEncoder()
+encoder_Gender.fit(["Female", "Male"])
+gender = st.selectbox("Gender", ["Female", "Male"])
+data['Gender'] = encoder_Gender.transform([gender])[0]
+
+# Grade Inputs
+st.markdown("#### Grades and Academic Units")
+create_slider('Admission_grade', 95, 190, 100)
+create_slider('Previous_qualification_grade', 95, 190, 100)
+
+create_slider('Curricular_units_1st_sem_approved', 0, 26, 5)
+create_slider('Curricular_units_1st_sem_grade', 0, 18, 5)
+create_slider('Curricular_units_1st_sem_enrolled', 0, 26, 5)
+create_slider('Curricular_units_1st_sem_credited', 0, 20, 5)
+
+create_slider('Curricular_units_2nd_sem_approved', 0, 20, 5)
+create_slider('Curricular_units_2nd_sem_grade', 0, 20, 12)
+create_slider('Curricular_units_2nd_sem_enrolled', 0, 23, 5)
+create_slider('Curricular_units_2nd_sem_credited', 0, 19, 5)
+
+# Display raw input
+st.markdown("### Review Your Input")
+user_input_df = pd.DataFrame(data)
+st.dataframe(user_input_df, use_container_width=True)
+
+# Prediction
+if st.button("Click Here to Predict"):
+    with st.spinner("Processing..."):
+        time.sleep(2)
+        preprocessed_data = data_preprocessing(data)
+        result = prediction(preprocessed_data)
+        st.success(f"Prediction: {result}")
