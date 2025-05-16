@@ -1,12 +1,16 @@
-# streamlit_app.py
+#Students_Performance.py
 import streamlit as st
 import pandas as pd
-import numpy as np
+from sklearn.preprocessing import LabelEncoder
 import joblib
+from PIL import Image
+import time
+from data_preprocessing import data_preprocessing
 
-# Load model dan encoder
-model = joblib.load('student_status_model.joblib')
-label_encoder = joblib.load('Random_Forest_Model.joblib')
+from data_preprocessing import encoder_Daytime_evening_attendance, encoder_Debtor, encoder_Displaced, encoder_Gender, encoder_Scholarship_holder, encoder_Tuition_fees_up_to_date
+from data_preprocessing import scaler_Admission_grade, scaler_Curricular_units_1st_sem_approved, scaler_Curricular_units_1st_sem_credited, scaler_Curricular_units_1st_sem_enrolled, scaler_Curricular_units_1st_sem_grade, scaler_Curricular_units_2nd_sem_approved, scaler_Curricular_units_2nd_sem_credited, scaler_Curricular_units_2nd_sem_enrolled, scaler_Curricular_units_2nd_sem_grade, scaler_Previous_qualification_grade
+
+from prediction import prediction
 
 # Judul aplikasi
 st.title("🎓 Prediksi Dropout Mahasiswa - Jaya Jaya Institut")
