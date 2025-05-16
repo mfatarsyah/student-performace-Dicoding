@@ -66,8 +66,11 @@ create_slider('Curricular_units_2nd_sem_credited', 0, 19, 5)
 
 # Display raw input
 st.markdown("### Review Your Input")
-user_input_df = pd.DataFrame(data)
+user_input_df = pd.DataFrame(data, index=[0])
 st.dataframe(user_input_df, use_container_width=True)
+# Display user input
+with st.expander("Raw Dataset"):
+    st.dataframe(data=user_input_df, width=1200, height=20)
 
 # Prediction
 if st.button("Click Here to Predict"):
