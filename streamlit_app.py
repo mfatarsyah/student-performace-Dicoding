@@ -17,6 +17,11 @@ st.title("🎓 Prediksi Dropout Mahasiswa - Jaya Jaya Institut")
 
 st.markdown("Masukkan data berikut untuk memprediksi apakah mahasiswa akan Dropout, Enrolled, atau Graduate.")
 
+# Initialize an empty dictionary to store user input
+data = {}
+
+# Convert user input dictionary to DataFrame
+user_input_df = pd.DataFrame(data, index=[0])
 
 # Helper functions
 def encode_selection(encoder, selection, labels):
@@ -28,7 +33,6 @@ def create_slider(label, min_value, max_value, default):
 
 # Form Input
 st.markdown("### Input Student Data Below")
-data = {}
 
 # Binary Selections
 st.markdown("#### Student Status")
