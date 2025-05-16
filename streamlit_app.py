@@ -73,6 +73,6 @@ st.dataframe(user_input_df, use_container_width=True)
 if st.button("Click Here to Predict"):
     with st.spinner("Processing..."):
         time.sleep(2)
-        preprocessed_data = data_preprocessing(data)
-        result = prediction(preprocessed_data)
+        new_data = data_preprocessing(data=data)
+        result = prediction(new_data)
         st.success(f"Prediction: {result}")
