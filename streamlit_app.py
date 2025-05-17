@@ -16,8 +16,8 @@ from data_preprocessing import (
 )
 from prediction import prediction
 
-st.title("🎓 Prediksi Dropout Mahasiswa - Jaya Jaya Institut")
-st.markdown("Masukkan data berikut untuk memprediksi apakah mahasiswa akan Dropout atau Graduate.")
+st.title("🎓 Student DropOut Prediction - Jaya Jaya Institute")
+st.markdown("Enter the following data to predict whether a student will Dropout or Graduate")
 
 data = {}
 
@@ -31,11 +31,11 @@ def create_slider(label, min_value, max_value, value):
     data[label] = [st.slider(label.replace('_', ' '), min_value=min_value, max_value=max_value, value=value)]
 
 # Input form - vertically aligned
-encode_binary("Tuition_fees_up_to_date", encoder_Tuition_fees_up_to_date)
-encode_binary("Scholarship_holder", encoder_Scholarship_holder)
+encode_binary("Tuition fees", encoder_Tuition_fees_up_to_date)
+encode_binary("Scholarship holder", encoder_Scholarship_holder)
 encode_binary("Debtor", encoder_Debtor)
 encode_binary("Displaced", encoder_Displaced)
-encode_binary("Daytime_evening_attendance", encoder_Daytime_evening_attendance)
+encode_binary("Daytime evening attendance", encoder_Daytime_evening_attendance)
 
 Gender = st.selectbox("Gender", ["Female", "Male"], index=1)
 encoder_Gender = LabelEncoder()
