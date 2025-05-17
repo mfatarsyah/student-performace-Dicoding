@@ -5,88 +5,60 @@ import joblib
 import time
 from data_preprocessing import data_preprocessing
 
-from data_preprocessing import encoder_Daytime_evening_attendance, encoder_Debtor, encoder_Displaced, encoder_Gender, encoder_Scholarship_holder, encoder_Tuition_fees_up_to_date
-from data_preprocessing import scaler_Admission_grade, scaler_Curricular_units_1st_sem_approved, scaler_Curricular_units_1st_sem_credited, scaler_Curricular_units_1st_sem_enrolled, scaler_Curricular_units_1st_sem_grade, scaler_Curricular_units_2nd_sem_approved, scaler_Curricular_units_2nd_sem_credited, scaler_Curricular_units_2nd_sem_enrolled, scaler_Curricular_units_2nd_sem_grade, scaler_Previous_qualification_grade
-
+from data_preprocessing import (
+    encoder_Daytime_evening_attendance, encoder_Debtor, encoder_Displaced,
+    encoder_Gender, encoder_Scholarship_holder, encoder_Tuition_fees_up_to_date,
+    scaler_Admission_grade, scaler_Curricular_units_1st_sem_approved,
+    scaler_Curricular_units_1st_sem_credited, scaler_Curricular_units_1st_sem_enrolled,
+    scaler_Curricular_units_1st_sem_grade, scaler_Curricular_units_2nd_sem_approved,
+    scaler_Curricular_units_2nd_sem_credited, scaler_Curricular_units_2nd_sem_enrolled,
+    scaler_Curricular_units_2nd_sem_grade, scaler_Previous_qualification_grade
+)
 from prediction import prediction
-# Judul aplikasi
-st.title("🎓 Prediksi Dropout Mahasiswa - Jaya Jaya Institut")
 
+st.title("🎓 Prediksi Dropout Mahasiswa - Jaya Jaya Institut")
 st.markdown("Masukkan data berikut untuk memprediksi apakah mahasiswa akan Dropout atau Graduate.")
 
-
-# Initialize an empty dictionary to store user input
 data = {}
 
-# Convert user input dictionary to DataFrame
-user_input_df = pd.DataFrame(data, index=[0])
-
-def encode_selection(encoder, selection, labels):
-    encoder.fit(labels)
-    return encoder.transform([selection])[0]
+def encode_binary(label, encoder):
+    user_input = st.selectbox(f"{label} (Yes/No)", ["Yes", "No"], index=1 if label == "Debtor" else 0)
+    mapped_value = 1 if user_input == "Yes" else 0
+    encoder.fit([0, 1])
+    data[label] = [encoder.transform([mapped_value])[0]]
 
 def create_slider(label, min_value, max_value, value):
-    data[label] = [st.slider(label=label.replace('_', ' '), min_value=min_value, max_value=max_value, value=value)]
+    data[label] = [st.slider(label.replace('_', ' '), min_value=min_value, max_value=max_value, value=value)]
 
-col1, col2, col3, col4 = st.columns(4)
-with col1:
-    encoder_Tuition_fees_up_to_date.fit([0, 1])
-    Tuition_fees_up_to_date = st.selectbox(label='Tuition fees', options=[0, 1], index=0)
-    data['Tuition_fees_up_to_date'] = [encoder_Tuition_fees_up_to_date.transform([Tuition_fees_up_to_date])[0]]
-with col2:
-    encoder_Scholarship_holder.fit([0, 1])
-    Scholarship_holder = st.selectbox(label='Scholarship holder', options=[0, 1], index=0)
-    data['Scholarship_holder'] = [encoder_Scholarship_holder.transform([Scholarship_holder])[0]]
-with col3:
-    encoder_Debtor.fit([0, 1])
-    Debtor = st.selectbox(label='Debtor', options=[0, 1], index=1)
-    data['Debtor'] = [encoder_Debtor.transform([Debtor])[0]]
-with col4:
-    encoder_Displaced.fit([0, 1])
-    Displaced = st.selectbox(label='Displaced', options=[0, 1], index=0)
-    data['Displaced'] = [encoder_Displaced.transform([Displaced])[0]]
+# Input form - vertically aligned
+encode_binary("Tuition_fees_up_to_date", encoder_Tuition_fees_up_to_date)
+encode_binary("Scholarship_holder", encoder_Scholarship_holder)
+encode_binary("Debtor", encoder_Debtor)
+encode_binary("Displaced", encoder_Displaced)
+encode_binary("Daytime_evening_attendance", encoder_Daytime_evening_attendance)
 
-col5, col6, col7, col8 = st.columns(4)
-with col5:
-    encoder_Daytime_evening_attendance.fit([0, 1])
-    Daytime_evening_attendance = st.selectbox(label='Attendance', options=[0, 1], index=0)
-    data['Daytime_evening_attendance'] = [encoder_Daytime_evening_attendance.transform([Daytime_evening_attendance])[0]]
-with col6:
-    encoder_Gender = LabelEncoder()
-    encoder_Gender.fit(["Female", "Male"])
-    Gender = st.selectbox(label='Gender', options=["Female", "Male"], index=1)
-    data['Gender'] = encoder_Gender.transform([Gender])[0]
-    # print(data['Gender'])
-with col7:
-    create_slider('Admission_grade', 95, 190, 100)
-with col8:
-    create_slider('Previous_qualification_grade', 95, 190, 100)
+Gender = st.selectbox("Gender", ["Female", "Male"], index=1)
+encoder_Gender = LabelEncoder()
+encoder_Gender.fit(["Female", "Male"])
+data["Gender"] = encoder_Gender.transform([Gender])[0]
 
-col9, col10, col11, col12 = st.columns(4)
-with col9:
-    create_slider('Curricular_units_1st_sem_approved', 0, 26, 5)
-with col10:
-    create_slider('Curricular_units_1st_sem_grade', 0, 18, 5)
-with col11:
-    create_slider('Curricular_units_1st_sem_enrolled', 0, 26, 5)
-with col12:
-    create_slider('Curricular_units_1st_sem_credited', 0, 20, 5)
+create_slider('Admission_grade', 95, 190, 100)
+create_slider('Previous_qualification_grade', 95, 190, 100)
 
-col13, col14, col15, col16 = st.columns(4)
-with col13:
-    create_slider('Curricular_units_2nd_sem_approved', 0, 20, 5)
-with col14:
-    create_slider('Curricular_units_2nd_sem_grade', 0, 20, 12)
-with col15:
-    create_slider('Curricular_units_2nd_sem_enrolled', 0, 23, 5)
-with col16:    
-    create_slider('Curricular_units_2nd_sem_credited', 0, 19, 5)
+create_slider('Curricular_units_1st_sem_approved', 0, 26, 5)
+create_slider('Curricular_units_1st_sem_grade', 0, 18, 5)
+create_slider('Curricular_units_1st_sem_enrolled', 0, 26, 5)
+create_slider('Curricular_units_1st_sem_credited', 0, 20, 5)
 
+create_slider('Curricular_units_2nd_sem_approved', 0, 20, 5)
+create_slider('Curricular_units_2nd_sem_grade', 0, 20, 12)
+create_slider('Curricular_units_2nd_sem_enrolled', 0, 23, 5)
+create_slider('Curricular_units_2nd_sem_credited', 0, 19, 5)
 
-# Preprocess data and make prediction on button click
+# Prediction
 if st.button('Click Here to Predict'):
     new_data = data_preprocessing(data=data)
     with st.spinner('Predicting...'):
-        time.sleep(2)  # Simulating prediction process
+        time.sleep(2)
         output = prediction(new_data)
         st.success(f"Prediction: {output}")
