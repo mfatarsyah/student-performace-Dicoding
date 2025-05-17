@@ -1,4 +1,3 @@
-#Students_Performance.py
 import streamlit as st
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
@@ -11,27 +10,6 @@ from data_preprocessing import encoder_Daytime_evening_attendance, encoder_Debto
 from data_preprocessing import scaler_Admission_grade, scaler_Curricular_units_1st_sem_approved, scaler_Curricular_units_1st_sem_credited, scaler_Curricular_units_1st_sem_enrolled, scaler_Curricular_units_1st_sem_grade, scaler_Curricular_units_2nd_sem_approved, scaler_Curricular_units_2nd_sem_credited, scaler_Curricular_units_2nd_sem_enrolled, scaler_Curricular_units_2nd_sem_grade, scaler_Previous_qualification_grade
 
 from prediction import prediction
-
-st.set_page_config(page_title="🎓 Students Performance", layout="wide")
-
-
-desired_width = 160
-desired_height = 160
-
-col1, col2 = st.columns([2, 10])
-with col2:
-    st.header('X INSTITUTE')
-    st.subheader("Students Performance Prediction")
-
-st.sidebar.write("""
-    This web app is designed to predict students academic performance based on the given input.
-""")
-
-st.sidebar.write("""
-    **Nama:** Arini Arumsari \n
-    **Email:** ariniarum98@gmail.com \n
-    **Id Dicoding:** -
-""")
 
 # Initialize an empty dictionary to store user input
 data = {}
