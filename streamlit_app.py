@@ -80,6 +80,7 @@ with col14:
     create_slider('Curricular_units_2nd_sem_grade', 0, 20, 12)
 with col15:
     create_slider('Curricular_units_2nd_sem_enrolled', 0, 23, 5)
+with col16:    
     create_slider('Curricular_units_2nd_sem_credited', 0, 19, 5)
 
 # Convert user input dictionary to DataFrame
