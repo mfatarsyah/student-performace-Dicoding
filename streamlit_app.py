@@ -36,7 +36,7 @@ with col1:
     data['Tuition_fees_up_to_date'] = [encoder_Tuition_fees_up_to_date.transform([Tuition_fees_up_to_date])[0]]
 with col2:
     encoder_Scholarship_holder.fit([0, 1])
-    Scholarship_holder = st.selectbox(label='Scholarship holder', options=[0 = No, 1 = Yes], index=0)
+    Scholarship_holder = st.selectbox(label='Scholarship holder', options=[0, 1], index=0)
     data['Scholarship_holder'] = [encoder_Scholarship_holder.transform([Scholarship_holder])[0]]
 with col3:
     encoder_Debtor.fit([0, 1])
@@ -80,7 +80,6 @@ with col14:
     create_slider('Curricular_units_2nd_sem_grade', 0, 20, 12)
 with col15:
     create_slider('Curricular_units_2nd_sem_enrolled', 0, 23, 5)
-with col16:
     create_slider('Curricular_units_2nd_sem_credited', 0, 19, 5)
 
 # Convert user input dictionary to DataFrame
