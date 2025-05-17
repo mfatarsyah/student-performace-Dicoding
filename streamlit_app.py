@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 import joblib
-from PIL import Image
 import time
 from data_preprocessing import data_preprocessing
 
@@ -83,12 +82,6 @@ with col15:
 with col16:    
     create_slider('Curricular_units_2nd_sem_credited', 0, 19, 5)
 
-# Convert user input dictionary to DataFrame
-user_input_df = pd.DataFrame(data, index=[0])
-
-# Display user input
-with st.expander("Raw Dataset"):
-    st.dataframe(data=user_input_df, width=1200, height=20)
 
 # Preprocess data and make prediction on button click
 if st.button('Click Here to Predict'):
