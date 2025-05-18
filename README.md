@@ -56,7 +56,7 @@ Dashboard Tableau ini menyajikan visualisasi menyeluruh mengenai performa mahasi
 4. Jalankan file streamlit dengan perintah berikut ini:
 
 ```
-streamlit run app.py
+streamlit run streamlit_app.py
 ```
 
 ## Link untuk mengakses ptototype streamlit
