@@ -41,4 +41,57 @@ Setup Environtment : ``` pip install numpy pandas matplotlib seaborn scikit-lear
 
 Link : [Dashboard Student Performance](https://public.tableau.com/views/studnetperformace/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)
 
+![alt text](https://github.com/mfatarsyah/student-performace-Dicoding/blob/main/Dashboard%20student%20performance.png)
 
+Dashboard Tableau ini menyajikan visualisasi menyeluruh mengenai performa mahasiswa berdasarkan beberapa variabel penting. Secara keseluruhan, terdapat 3.630 mahasiswa yang terbagi menjadi dua kelompok utama, yaitu 2.209 mahasiswa yang berhasil lulus (graduate) dan 1.421 mahasiswa yang mengalami putus studi (dropout). Salah satu visualisasi utama menunjukkan distribusi gender, di mana 65,59% adalah perempuan dan 34,41% adalah laki-laki. Visualisasi lainnya memperlihatkan bahwa sebagian besar mahasiswa yang lulus tidak memiliki utang (debtor) dan telah melunasi biaya kuliah mereka. Selain itu, grafik distribusi waktu kehadiran menunjukkan bahwa mahasiswa yang mengikuti kelas pada malam hari lebih rentan terhadap dropout dibanding yang mengikuti kelas di siang hari. Tabel "Displaced & Status" mengindikasikan bahwa mahasiswa yang mengalami pemindahan (displaced) juga memiliki jumlah dropout yang tinggi. Sementara itu, grafik kelulusan berdasarkan status beasiswa memperlihatkan bahwa mahasiswa penerima beasiswa memiliki tingkat kelulusan yang lebih rendah dibanding mereka yang tidak menerima beasiswa. Secara keseluruhan, dashboard ini memberikan gambaran yang informatif mengenai faktor-faktor yang memengaruhi kelulusan mahasiswa, serta mengidentifikasi kelompok-kelompok mahasiswa yang memerlukan perhatian dan intervensi lebih lanjut.
+
+## Menjalankan Sistem Machine Learning
+
+1. Buka terminal atau PowerShell
+
+2. Aktifkan virtual environment yang telah dibuat sebelumnya
+
+3. Masuk ke lokasi dimana file streamlit (streamlit_app.py) berada
+
+4. Jalankan file streamlit dengan perintah berikut ini:
+
+```
+streamlit run app.py
+```
+
+## Link untuk mengakses ptototype streamlit
+
+```
+https://student-performace-dicoding-nzptgmdwez6wcg3j3usmgc.streamlit.app/
+```
+
+## Conclusion
+
+* Mahasiswa yang hadir pada malam hari, memiliki status displaced, memegang beasiswa, dan memiliki utang, lebih cenderung mengalami dropout.
+
+* Faktor keuangan dan beban hidup di luar kampus merupakan faktor signifikan yang memengaruhi performa akademik.
+
+* Tindakan intervensi yang tepat sasaran berdasarkan faktor-faktor tersebut dapat membantu menurunkan tingkat dropout dan meningkatkan tingkat kelulusan secara menyeluruh.
+
+## Rekomendasi Action Items
+
+1. Program Pendampingan Khusus untuk Mahasiswa Risiko Tinggi
+
+Buat program mentoring dan dukungan belajar bagi mahasiswa dengan ciri:
+
+* Kehadiran malam hari
+
+* Status beasiswa
+
+* Status "displaced"
+
+* Mahasiswa yang memiliki utang
+
+
+2. Evaluasi dan Revisi Skema Beasiswa dan Bantuan Keuangan
+
+* Pastikan penerima beasiswa juga mendapatkan dukungan akademik dan sosial
+
+* Buat sistem utang pendidikan yang fleksibel dan tidak membebani mahasiswa selama studi
+
+3. Menyediakan tutor atau mentor, kelas remedial, bimbingan akademik, dan dukungan bagi penerima beasiswa.
