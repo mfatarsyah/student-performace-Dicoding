@@ -67,7 +67,7 @@ https://student-performace-dicoding-nzptgmdwez6wcg3j3usmgc.streamlit.app/
 
 ## Conclusion
 
-* Mahasiswa yang hadir pada malam hari, memiliki status displaced, memegang beasiswa, dan memiliki utang, lebih cenderung mengalami dropout.
+* Mahasiswa yang hadir pada malam hari, memiliki status displaced,  tidak memegang beasiswa, dan memiliki utang, lebih cenderung mengalami dropout.
 
 * Faktor keuangan dan beban hidup di luar kampus merupakan faktor signifikan yang memengaruhi performa akademik.
 
