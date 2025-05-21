@@ -35,7 +35,24 @@ pihak institusi dapat mengambil langkah-langkah yang tepat untuk meningkatkan ha
 
 Sumber data : [Student Performance](https://github.com/dicodingacademy/dicoding_dataset/tree/main/students_performance)
 
-Setup Environtment : ``` pip install numpy pandas matplotlib seaborn scikit-learn==1.2.2 joblib==1.4.2 streamlit==1.24.1 ```
+Setup Environtment :
+- Anaconda:
+
+```
+conda create --name student-perfomance python=3.11.12
+conda activate student-perfomance
+pip install -r requirements.txt
+```
+ - Shell/Terminal:
+```
+mkdir stud-perfom
+cd student-perfomance
+pipenv install
+pipenv shell
+pip install -r requirements.txt
+```
+
+``` pip install numpy pandas matplotlib seaborn scikit-learn==1.2.2 joblib==1.4.2 streamlit==1.24.1 ```
 
 ## Business Dashboard
 
