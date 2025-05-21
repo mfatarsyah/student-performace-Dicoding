@@ -33,14 +33,17 @@ pihak institusi dapat mengambil langkah-langkah yang tepat untuk meningkatkan ha
 
 ## Persiapan
 
-Sumber data : [Student Performance](https://github.com/dicodingacademy/dicoding_dataset/tree/main/students_performance)
+Sumber data : [Student Performance](https://github.com/dicodingacademy/dicoding_dataset/tree/main/students_performance) 
+
+Dataset ini berisi informasi mengenai mahasiswa dari suatu institusi pendidikan tinggi, dengan total 37 atribut. Setiap baris merepresentasikan data individual mahasiswa yang mencakup latar belakang pribadi, akademik, serta status akhir studi mereka.
+
 
 Setup Environtment :
 - Anaconda:
 
 ```
-conda create --name student-perfomance python=3.11.12
-conda activate student-perfomance
+conda create --name student-performance python=3.11.12
+conda activate student-performance
 pip install -r requirements.txt
 ```
  - Shell/Terminal:
